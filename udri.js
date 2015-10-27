@@ -52,6 +52,7 @@ var resizeCanvas = function() {
 	buttonUmruk.style.height = buttonsHeight + 'px';
 	buttonPlesnica.style.height = buttonsHeight + 'px';
 	document.getElementById('addthis').style.bottom = buttonsHeight + 'px';
+	document.getElementById('totalCounter').style.bottom = (buttonsHeight + 28) + 'px';
 };
 
 // rescale the canvas on window resize
@@ -107,7 +108,6 @@ function udariPlesnica() {
 }
 
 function addScore( type ) {
-	console.warn('add score', type);
 	if ( type === 'umruk' ) {
 		unsent.umruci++;
 		counters.umruci++;
@@ -136,8 +136,8 @@ function loaded() {
 	umruk.visible = true;
 };
 
-setInterval(function() {
-	if (unsent.umruci > 0 || unsent.plesnici > 0) {
+function updateCounters(force) {
+	if (force || unsent.umruci > 0 || unsent.plesnici > 0) {
 		$.ajax({
 			type: 'post',
 			url: 'http://91.230.195.67/volen_server/',
@@ -147,10 +147,15 @@ setInterval(function() {
 			},
 			dataType: 'json',
 			success: function(r) {
-				console.warn(r);
+				document.getElementById('totalUsers').innerHTML = r.users;
+				document.getElementById('totalPunches').innerHTML = r.punches;
+				document.getElementById('totalSlaps').innerHTML = r.slaps;
 			}
 		});
 		unsent.umruci = 0;
 		unsent.plesnici = 0;
 	}
-}, 5000);
+}
+
+setInterval(function() { updateCounters(); }, 5000);
+updateCounters(true);
