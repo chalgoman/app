@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Удари Волен Сидеров и ти</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<style type="text/css">
+		body { margin: 0; padding: 0; overflow: hidden; }
+		canvas { position: absolute; }
+		input { position: absolute; bottom: 0px; width: 50%; min-height: 50px; z-index: 1000; font-size: 2em; }
+		#plesnica { left: 0px; }
+		#umruk { right: 0px; }
+		#preloader { display: block; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: #000000; z-index: 10000; text-align: center; }
+		#preloader img { position: absolute; left: 50%; margin-left: -25px; top: 50%; margin-top: -30px; }
+		#preloader div { text-align: center; width: 100%; position: absolute; top: 50%; margin-top: 25px; color: white; font-family: arial; }
+		.counter { position: absolute; z-index: 100000; color: white; font-size: 2em; font-family: arial; background-color: #000000; padding: 0px 10px; }
+		#counterUmruci { top: 100px; }
+		#counterPlesnici { top: 140px; }
+		.addthis { position: absolute; z-index: 100000000; width: 100%; height: 28px; }
+	</style>
+</head>
+<body>
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5198b73803f5b9ee" async="async"></script>
+
+	<div id="preloader">
+		<img src="img/loading.jpg" /><div>Моля изчакайте...</div>
+	</div>
+	<div class="counter" id="counterUmruci">Юмруци: 0</div>
+	<div class="counter" id="counterPlesnici">Плесници: 0</div>
+	<input type="button" value="Удари плесница" id="plesnica" onclick="udariPlesnica()" />
+	<input type="button" value="Удари юмрук" id="umruk" onclick="udariUmruk()" />
+	
+	<div class="addthis" id="addthis">
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
+		<div class="addthis_native_toolbox"></div>
+	</div>
+
+	<script type="text/javascript" src="pixi.min.js"></script>
+	<script type="text/javascript" src="udri.js"></script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- volen -->
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-4472192964071158"
+	     data-ad-slot="4209412148"
+	     data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</body>
+</html>
