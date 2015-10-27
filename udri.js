@@ -35,15 +35,18 @@ var resizeCanvas = function() {
 	var newWidth = renderer.view.width * scale,
 		newHeight = renderer.view.height * scale;
 
+	var buttonsHeight = window.innerHeight - newHeight - 90;
+	if (buttonsHeight < 50) buttonsHeight = 50;
+
 	renderer.view.style.width = newWidth + 'px';
 	renderer.view.style.height = newHeight + 'px';
 	renderer.view.style.left = ((width - newWidth) / 2) + 'px';
 	renderer.view.style.top = 90 + 'px';
 	document.body.style.width = window.innerWidth + 'px';
 	document.body.style.height = window.innerHeight + 'px';
-	buttonUmruk.style.height = window.innerHeight - newHeight - 90 + 'px';
-	buttonPlesnica.style.height = window.innerHeight - newHeight - 90 + 'px';
-	document.getElementById('addthis').style.top = newHeight + 62 + 'px';
+	buttonUmruk.style.height = buttonsHeight + 'px';
+	buttonPlesnica.style.height = buttonsHeight + 'px';
+	document.getElementById('addthis').style.bottom = buttonsHeight + 'px';
 };
 
 // rescale the canvas on window resize
