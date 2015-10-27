@@ -5,6 +5,9 @@ PIXI.ticker.shared.add(function (time) {
 	renderer.render(stage);
 });
 
+var punchSound = new Howl({urls: ['sounds/punch_or_whack_-Vladimir-403040765.mp3']});
+var slapSound = new Howl({urls: ['sounds/Slap-SoundMaster13-49669815.mp3']});
+
 var loader = new PIXI.loaders.Loader();
 for (var i = 0; i < 3; i++) {
 	loader.add('img/plesnica'+i+'.png','img/plesnica'+i+'.png');
@@ -80,6 +83,7 @@ function initMovieClips() {
 }
 
 function udariUmruk() {
+	punchSound.play();
 	deactivateButtons();
 	plesnica.visible = false;
 	umruk.visible = true;
@@ -87,6 +91,7 @@ function udariUmruk() {
 }
 
 function udariPlesnica() {
+	slapSound.play();
 	deactivateButtons();
 	umruk.visible = false;
 	plesnica.visible = true;
