@@ -21,6 +21,11 @@ var counters = {
 	umruci: 0
 };
 
+var unsent = {
+	plesnici: 0,
+	umruci: 0
+};
+
 var plesnica, umruk;
 
 var buttonUmruk = document.getElementById('umruk');
@@ -104,9 +109,11 @@ function udariPlesnica() {
 function addScore( type ) {
 	console.warn('add score', type);
 	if ( type === 'umruk' ) {
+		unsent.umruci++;
 		counters.umruci++;
 		document.getElementById('counterUmruci').innerHTML = 'Юмруци: ' + counters.umruci;
 	} else {
+		unsent.plesnici++;
 		counters.plesnici++;
 		document.getElementById('counterPlesnici').innerHTML = 'Плесници: ' + counters.plesnici;
 	}
@@ -128,3 +135,22 @@ function loaded() {
 	umruk.gotoAndStop(0);
 	umruk.visible = true;
 };
+
+setInterval(function() {
+	if (unsent.umruci > 0 || unsent.plesnici > 0) {
+		$.ajax({
+			type: 'post',
+			url: 'http://91.230.195.67/volen_server/',
+			data: {
+				'punches': unsent.umruci,
+				'slaps': unsent.plesnici
+			},
+			dataType: 'json',
+			success: function(r) {
+				console.warn(r);
+			}
+		});
+		unsent.umruci = 0;
+		unsent.plesnici = 0;
+	}
+}, 5000);
