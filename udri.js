@@ -32,10 +32,10 @@ try {
 if (localStorageAvailable) {
    var _plesnici = localStorage.getItem('volenPlesnici');
    var _umruci = localStorage.getItem('volenUmruci');
-   if (!isNaN(_plesnici)) {
+   if (_plesnici && !isNaN(_plesnici)) {
    	counters.plesnici = parseInt(_plesnici, 10);
    }
-   if (!isNaN(_umruci)) {
+   if (_umruci && !isNaN(_umruci)) {
    	counters.umruci = parseInt(_umruci, 10);
    }
 }
