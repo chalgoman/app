@@ -138,7 +138,7 @@ function loaded() {
 
 var _tmp = 0;
 function hasToSendAjax() {
-    if (unset.umruci > 0 || unset.plesnici > 0) return true;
+    if (unsent.umruci > 0 || unsent.plesnici > 0) return true;
     if (_tmp >= 3) { _tmp = 0; return true; }
     _tmp++;
     return false;
