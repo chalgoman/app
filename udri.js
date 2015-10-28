@@ -20,6 +20,27 @@ var counters = {
 	plesnici: 0,
 	umruci: 0
 };
+var localStorageAvailable;
+try {
+  localStorage.setItem('fsdfsdgdsfdsf', 'fsdfsdgdsfdsf');
+  localStorage.removeItem('fsdfsdgdsfdsf');
+  localStorageAvailable = true;
+} catch(e) {
+  localStorageAvailable = false;
+}
+
+if (localStorageAvailable) {
+   var _plesnici = localStorage.getItem('volenPlesnici');
+   var _umruci = localStorage.getItem('volenUmruci');
+   if (_plesnici && !isNaN(_plesnici)) {
+   	counters.plesnici = parseInt(_plesnici, 10);
+   	document.getElementById('counterPlesnici').innerHTML = 'Плесници: ' + counters.plesnici;
+   }
+   if (_umruci && !isNaN(_umruci)) {
+   	counters.umruci = parseInt(_umruci, 10);
+   	document.getElementById('counterUmruci').innerHTML = 'Юмруци: ' + counters.umruci;
+   }
+}
 
 var unsent = {
 	plesnici: 0,
@@ -117,6 +138,10 @@ function addScore( type ) {
 		counters.plesnici++;
 		document.getElementById('counterPlesnici').innerHTML = 'Плесници: ' + counters.plesnici;
 	}
+	if (localStorageAvailable) {
+	   localStorage.setItem('volenPlesnici', counters.plesnici);
+	   localStorage.setItem('volenUmruci', counters.umruci);
+	}
 }
 
 function deactivateButtons() {
@@ -136,8 +161,16 @@ function loaded() {
 	umruk.visible = true;
 };
 
+var _tmp = 0;
+function hasToSendAjax() {
+    if (unsent.umruci > 0 || unsent.plesnici > 0) return true;
+    if (_tmp >= 3) { _tmp = 0; return true; }
+    _tmp++;
+    return false;
+}
+
 function updateCounters(force) {
-	if (force || unsent.umruci > 0 || unsent.plesnici > 0) {
+	if (force || hasToSendAjax()) {
 		$.ajax({
 			type: 'post',
 			url: 'http://91.230.195.67/volen_server/',
