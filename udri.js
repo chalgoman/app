@@ -138,7 +138,7 @@ function addScore( type ) {
 	}
 	if (localStorageAvailable) {
 	   localStorage.setItem('volenPlesnici', counters.plesnici);
-	   localStorage.setItem('volenUmruci', counter.umruci);
+	   localStorage.setItem('volenUmruci', counters.umruci);
 	}
 }
 
