@@ -34,9 +34,11 @@ if (localStorageAvailable) {
    var _umruci = localStorage.getItem('volenUmruci');
    if (_plesnici && !isNaN(_plesnici)) {
    	counters.plesnici = parseInt(_plesnici, 10);
+   	document.getElementById('counterPlesnici').innerHTML = 'Плесници: ' + counters.plesnici;
    }
    if (_umruci && !isNaN(_umruci)) {
    	counters.umruci = parseInt(_umruci, 10);
+   	document.getElementById('counterUmruci').innerHTML = 'Юмруци: ' + counters.umruci;
    }
 }
 
