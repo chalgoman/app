@@ -136,8 +136,16 @@ function loaded() {
 	umruk.visible = true;
 };
 
+var _tmp = 0;
+function hasToSendAjax() {
+    if (unset.umruci > 0 || unset.plesnici > 0) return true;
+    if (_tmp >= 3) { _tmp = 0; return true; }
+    _tmp++;
+    return false;
+}
+
 function updateCounters(force) {
-	if (force || unsent.umruci > 0 || unsent.plesnici > 0) {
+	if (force || hasToSendAjax()) {
 		$.ajax({
 			type: 'post',
 			url: 'http://91.230.195.67/volen_server/',
