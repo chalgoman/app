@@ -136,6 +136,10 @@ function addScore( type ) {
 		counters.plesnici++;
 		document.getElementById('counterPlesnici').innerHTML = 'Плесници: ' + counters.plesnici;
 	}
+	if (localStorageAvailable) {
+	   localStorage.setItem('volenPlesnici', counters.plesnici);
+	   localStorage.setItem('volenUmruci', counter.umruci);
+	}
 }
 
 function deactivateButtons() {
