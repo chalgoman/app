@@ -20,6 +20,25 @@ var counters = {
 	plesnici: 0,
 	umruci: 0
 };
+var localStorageAvailable;
+try {
+  localStorage.setItem('fsdfsdgdsfdsf', 'fsdfsdgdsfdsf');
+  localStorage.removeItem('fsdfsdgdsfdsf');
+  localStorageAvailable = true;
+} catch(e) {
+  localStorageAvailable = false;
+}
+
+if (localStorageAvailable) {
+   var _plesnici = localStorage.getItem('volenPlesnici');
+   var _umruci = localStorage.getItem('volenUmruci');
+   if (!isNaN(_plesnici)) {
+   	counters.plesnici = parseInt(_plesnici, 10);
+   }
+   if (!isNaN(_umruci)) {
+   	counters.umruci = parseInt(_umruci, 10);
+   }
+}
 
 var unsent = {
 	plesnici: 0,
